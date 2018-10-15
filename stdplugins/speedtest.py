@@ -10,7 +10,7 @@ import requests
 temporary_download_directory = os.environ.get("TMP_DOWNLOAD_DIRECTORY", "./../DOWNLOADS/")
 
 
-@borg.on(events.NewMessage(pattern=r".speedtest", outgoing=True))
+@borg.on(events.NewMessage(pattern=r"\.speedtest", outgoing=True))
 async def _(event):
     if event.fwd_from:
         return
@@ -36,5 +36,5 @@ async def _(event):
     end = datetime.now()
     ms = (end - start).microseconds / 1000
     os.remove(required_file_name)
-    await event.edit("**SpeedTest** completed in {} seconds \n\n {}".format(ms, output_str))
+await event.edit("**SpeedTest** completed in {} seconds \n\n {}".format(ms, output_str))
 
